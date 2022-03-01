@@ -12,7 +12,7 @@
         <div class="text-dark order-2 order-md-1">
 
 {{--            <span class="text-muted font-weight-bold mr-2">{{\Carbon\Carbon::now()->year}}</span>--}}
-            <a href="{{settings('copyright')}}" title="{{settings('copyright')}}" target="_blank" class="text-dark-75 text-hover-primary">{{settings('copyright')}}</a>
+            <a href="{{settings('copyright_ar')}}" title="{{settings('copyright_ar')}}" target="_blank" class="text-dark-75 text-hover-primary">{{settings('copyright_ar')}}</a>
         </div>
         <!--end::Copyright-->
         <!--begin::Nav-->

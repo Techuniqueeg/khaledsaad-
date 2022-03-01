@@ -1,51 +1,56 @@
+
 <div class="card-body row">
-    <div class="form-group  col-12">
-        <label>عنوان المشروع<span
+    <div class="form-group  col-6">
+        <label>اسم المنتج بالعربيه<span
                 class="text-danger">*</span></label>
-        <input name="name" placeholder="ادخل عنوان المشروع" value="{{ old('name', $data->name ?? '') }}"
-               class="form-control  {{ $errors->has('name') ? 'border-danger' : '' }}" type="text"
-               maxlength="255"/>
+        <input name="name_ar" placeholder="ادخل اسم المنتج بالعربيه" value="{{ old('name_ar', $data->name_ar ?? '') }}"
+               class="form-control  {{ $errors->has('name_ar') ? 'border-danger' : '' }}" type="text"
+               maxlength="191"/>
     </div>
     <div class="form-group  col-6">
-        <label class="" >اسعار المشروع<span
+        <label>اسم المنتج بالانجليزيه<span
                 class="text-danger">*</span></label>
-        <div class="row">
-            <input name="price_from" placeholder="ادخل اقل سعر" value="{{ old('price_from', $data->price_from ?? '') }}"
-                   class="form-control col-6  {{ $errors->has('price_from') ? 'border-danger' : '' }}" type="number"
-                   maxlength="255"/>
-            <input name="price_to" placeholder="ادخل اعلي سعر" value="{{ old('price_to', $data->price_to ?? '') }}"
-                   class="form-control  col-6  {{ $errors->has('price_to') ? 'border-danger' : '' }}" type="number"
-                   maxlength="255"/>
+        <input name="name_en" placeholder="ادخل اسم المنتج بالانجليزيه" value="{{ old('name_en', $data->name_en ?? '') }}"
+               class="form-control  {{ $errors->has('name_en') ? 'border-danger' : '' }}" type="text"
+               maxlength="191"/>
+    </div>
+    <div class="form-group col-6">
+        <label>المميزات بالعربيه<span
+                class="text-danger">*</span></label>
+        <div class="">
+                <textarea class="form-control {{ $errors->has('feature_ar') ? 'border-danger' : '' }} "
+                          placeholder="ادخل المميزات بالعربيه" name="feature_ar"
+                          rows="5">{{ old('feature_ar', $data->feature_ar ?? '') }}</textarea>
         </div>
     </div>
-    <div class="form-group  col-6">
-        <label class="" >مساحات المشروع<span
+    <div class="form-group col-6">
+        <label>المميزات بالانجليزيه<span
                 class="text-danger">*</span></label>
-        <div class="row">
-            <input name="area_from" placeholder="ادخل اقل مساحه" value="{{ old('area_from', $data->area_from ?? '') }}"
-                   class="form-control col-6  {{ $errors->has('area_from') ? 'border-danger' : '' }}" type="number"
-                   maxlength="255"/>
-            <input name="area_to" placeholder="ادخل اعلي مساحه" value="{{ old('area_to', $data->area_to ?? '') }}"
-                   class="form-control  col-6  {{ $errors->has('area_to') ? 'border-danger' : '' }}" type="number"
-                   maxlength="255"/>
+        <div class="">
+                <textarea class="form-control {{ $errors->has('feature_en') ? 'border-danger' : '' }} "
+                          placeholder="ادخل المميزات بالانجليزيه" name="feature_en"
+                          rows="5">{{ old('feature_en', $data->feature_en ?? '') }}</textarea>
         </div>
     </div>
-    <div class="form-group col-4">
-        <label>النوع</label>
-        <select name="type_id"
-                class="form-control form-control-solid form-control-lg">
-            @foreach($Type as $row)
-                <option
-                    @if(Request::segment(1)== 'projects' && Request::segment(2)== 'edit')
-                    {{ $row->id == old('type_id',  $data->type_id)  ? 'selected' : '' }}
-                    @else
-                    {{ $row->id == old('type_id') ? 'selected' : '' }}
-                    @endif
-                    value="{{ $row->id }}">{{ $row->name }}</option>
-            @endforeach
-        </select>
+    <div class="form-group col-6">
+        <label>الوصف بالعربيه<span
+                class="text-danger">*</span></label>
+        <div class="">
+                <textarea class="form-control {{ $errors->has('description_ar') ? 'border-danger' : '' }} "
+                          placeholder="ادخل الوصف بالعربيه" name="description_ar"
+                          rows="5">{{ old('description_ar', $data->description_ar ?? '') }}</textarea>
+        </div>
     </div>
-    <div class="form-group col-4">
+    <div class="form-group col-6">
+        <label>الوصف بالانجليزيه<span
+                class="text-danger">*</span></label>
+        <div class="">
+                <textarea class="form-control {{ $errors->has('description_en') ? 'border-danger' : '' }} "
+                          placeholder="ادخل الوصف بالعربيه" name="description_en"
+                          rows="5">{{ old('description_en', $data->description_en ?? '') }}</textarea>
+        </div>
+    </div>
+    <div class="form-group col-3">
         <label>القسم</label>
         <select name="category_id"
                 class="form-control form-control-solid form-control-lg">
@@ -56,45 +61,51 @@
                     @else
                     {{ $row->id == old('category_id') ? 'selected' : '' }}
                     @endif
-                    value="{{ $row->id }}">{{ $row->name }}</option>
+                    value="{{ $row->id }}">{{ $row->name_ar }}</option>
             @endforeach
         </select>
     </div>
-    <div class="form-group col-4">
-        <label>المنطقه</label>
-        <select name="location_id"
-                class="form-control form-control-solid form-control-lg">
-            @foreach($Location as $row)
+
+    <div class="form-group  col-3">
+        <label>سعر المنتج<span
+                class="text-danger">*</span></label>
+        <input name="price" placeholder="ادخل سعر المنتج " value="{{ old('price', $data->price ?? '') }}"
+               class="form-control  {{ $errors->has('price') ? 'border-danger' : '' }}" type="text"
+               maxlength="191"/>
+    </div>
+    <div class="form-group col-3">
+        <label>الالوان<span class="text-danger">*</span></label>
+        <select name="colors[]"  class="form-control form-control-solid form-control-lg select2 {{ $errors->has('colors') ? 'border-danger' : '' }}" multiple="multiple id="  id="kt_select2_1_modal">
+            @foreach($attr as $row)
+
                 <option
                     @if(Request::segment(1)== 'projects' && Request::segment(2)== 'edit')
-                    {{ $row->id == old('location_id',  $data->location_id)  ? 'selected' : '' }}
+                        @if(in_array($row->id,$data->Colors->value ) ) selected @endif
+
                     @else
-                    {{ $row->id == old('location_id') ? 'selected' : '' }}
+                    {{ $row->id == old('colors') ? 'selected' : '' }}
                     @endif
-                    value="{{ $row->id }}">{{ $row->name }}</option>
+                    value="{{ $row->id }}" name="colors">{{ $row->value_ar}}</option>
             @endforeach
         </select>
     </div>
-    <div class="form-group col-12">
-        <label>وصف المميزات<span
-                class="text-danger">*</span></label>
-        <div class="">
-                <textarea class="form-control {{ $errors->has('feature') ? 'border-danger' : '' }} "
-                          placeholder="ادخل المميزات" name="feature"
-                          rows="5">{{ old('feature', $data->feature ?? '') }}</textarea>
-        </div>
+    <div class="form-group col-3">
+        <label>الاضافات<span class="text-danger">*</span></label>
+        <select name="addons[]"  class="form-control form-control-solid form-control-lg select2 {{ $errors->has('addons') ? 'border-danger' : '' }}" multiple="multiple id="  id="kt_select2_2_modal">
+            @foreach($addon as $row)
+                <option
+                    @if(Request::segment(1)== 'projects' && Request::segment(2)== 'edit')
+                    @if(in_array($row->id,$addon_ids)) selected @endif
+
+                    @else
+                    {{ $row->id == old('addons') ? 'selected' : '' }}
+                    @endif
+                    value="{{ $row->id }}" name="addons">{{ $row->name_ar}}</option>
+            @endforeach
+        </select>
     </div>
-    <div class="form-group col-12">
-        <label>وصف الملحوظات<span
-                class="text-danger">*</span></label>
-        <div class="">
-                <textarea class="form-control {{ $errors->has('description') ? 'border-danger' : '' }} "
-                          placeholder="ادخل الملحوظات" name="description"
-                          rows="5">{{ old('description', $data->description ?? '') }}</textarea>
-        </div>
-    </div>
-    <div class="form-group col-md-6">
-        <label>صورة المشروع الاساسيه<span
+    <div class="form-group col-md-4">
+        <label>صورة المنتج الاساسيه<span
                 class="text-danger">*</span></label>
         <div class="col-lg-8">
 
@@ -116,10 +127,11 @@
             </div>
         </div>
     </div>
+
     <div class="col-12">
         <br>
         <br>
-        <h6 class="text-dark">صورة المشروع الاضافيه<span
+        <h6 class="text-dark">صورة المنتج الاضافيه<span
                 class="text-danger">*</span></h6>
         <div class="card-body col-12">
 
@@ -157,10 +169,10 @@
             </div>
         </div>
     </div>
-
 </div>
 <div class="card-footer text-left">
     <button type="Submit" id="submit" class="btn btn-warning btn-default ">حفظ</button>
     <a href="{{ URL::previous() }}" class="btn btn-secondary">الغاء</a>
 </div>
+
 

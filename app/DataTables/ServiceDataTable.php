@@ -66,7 +66,7 @@ class ServiceDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('title')->title('عنوان الخدمه'),
+            Column::make('title_ar')->title('عنوان الخدمه بالعربيه'),
             Column::make('action')->title('الاجرائات'),
         ];
     }

@@ -26,8 +26,10 @@ class AboutUsRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'description' => 'required',
+            'name_ar' => 'required|max:255',
+            'description_ar' => 'required',
+            'name_en' => 'required|max:255',
+            'description_en' => 'required',
             'image' => [
                 'nullable',
                 'mimes:jpeg,jpg,png',

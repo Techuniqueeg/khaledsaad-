@@ -1,4 +1,4 @@
-@php($title='اضافه مشروع')
+@php($title='اضافه منتج')
 @extends('adminLayouts.app')
 @section('title')
     {{$title}}
@@ -40,6 +40,21 @@
 @section('script')
     <script !src="">
         var avatar1 = new KTImageInput('kt_image_1');
+    </script>
+    <script src="assets/js/pages/crud/forms/widgets/select2.js"></script>
+    <script>
+        // tagging support
+        $('#kt_select2_1_modal').select2({
+            placeholder: "اختر الالوان",
+            tags: true
+        });
+    </script>
+    <script>
+        // tagging support
+        $('#kt_select2_2_modal').select2({
+            placeholder: "اختر الاضافات",
+            tags: true
+        });
     </script>
     <script>
         $(document).ready(function() {

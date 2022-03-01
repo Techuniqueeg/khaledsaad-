@@ -23,7 +23,10 @@ class ProjectDataTable extends DataTable
             ->eloquent($query)
             ->editColumn('image', '<img class="img-thumbnail" src="{{$image}}" style="height: 75px; width: 75px;">')
             ->addColumn('action', 'dashboard.project.parts.action')
-            ->rawColumns(['action', 'image']);
+            ->addColumn('active', 'dashboard.project.parts.active')
+            ->addColumn('try', 'dashboard.project.parts.try')
+            ->addColumn('special', 'dashboard.project.parts.special')
+            ->rawColumns(['action', 'image','active','try','special']);
     }
 
     /**
@@ -67,8 +70,11 @@ class ProjectDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('name')->title('الاسم'),
+            Column::make('name_ar')->title('الاسم'),
             Column::make('image')->title('الصوره الرئيسيه'),
+            Column::make('active')->title('التفعيل'),
+            Column::make('try')->title('التجربه'),
+            Column::make('special')->title('منتج خاص'),
             Column::make('action')->title('الاجرائات'),
         ];
     }

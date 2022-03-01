@@ -22,6 +22,11 @@ class CategoryDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('action', 'dashboard.category.parts.action')
+            ->editColumn('parent_id', function ($inquiry) {
+                if ($inquiry->parent_id == null){ return 'قسم رائيسي'; }else return 'قسم فرعي';
+
+                return 'Cancel';
+            })
             ->rawColumns(['action']);
     }
 
@@ -66,7 +71,8 @@ class CategoryDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('name')->title('الاسم'),
+            Column::make('name_ar')->title('الاسم بالعربيه'),
+            Column::make('parent_id')->title('نوع القسم'),
             Column::make('action')->title('الاجرائات'),
         ];
     }

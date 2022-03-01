@@ -35,14 +35,12 @@ class SliderController extends GeneralController
     public function store(SliderRequest $request)
     {
         $data = $request->all();
-
         if ($request->image) {
             if ($request->hasFile('image')) {
                 $data['image'] = $this->uploadImage($request->file('image'), $this->image_path);
             }
         }
         $trip = $this->model::create($data);
-
         return redirect()->route($this->route)->with('success', 'تم الاضافه بنجاح');
     }
 

@@ -1,17 +1,32 @@
 <div class="card-body row">
-    <div class="form-group  col-12">
-        <label>العنوان<span
+    <div class="form-group  col-6">
+        <label>العنوان بالعربيه<span
                 class="text-danger">*</span></label>
-        <input name="name" placeholder="ادخل عنوان الصوره" value="{{ old('name', $data->name ?? '') }}"
-               class="form-control  {{ $errors->has('name') ? 'border-danger' : '' }}" type="text"
+        <input name="name_ar" placeholder="ادخل عنوان الصوره" value="{{ old('name_ar', $data->name_ar ?? '') }}"
+               class="form-control  {{ $errors->has('name_ar') ? 'border-danger' : '' }}" type="text"
                maxlength="255"/>
     </div>
-    <div class="form-group col-12">
-        <label>وصف ماذا عنا<span
+    <div class="form-group  col-6">
+        <label>العنوان بالامجليزيه<span
+                class="text-danger">*</span></label>
+        <input name="name_en" placeholder="ادخل عنوان الصوره" value="{{ old('name_en', $data->name_en ?? '') }}"
+               class="form-control  {{ $errors->has('name_en') ? 'border-danger' : '' }}" type="text"
+               maxlength="255"/>
+    </div>
+    <div class="form-group col-6">
+        <label>وصف ماذا عنا بالعربيه<span
                 class="text-danger">*</span></label>
         <div class="">
-                <textarea class="form-control {{ $errors->has('description') ? 'border-danger' : '' }} "
-                          placeholder="ادخل وصف ماذا عنا"      name="description" rows="10" >{{ old('description', $data->description ?? '') }}</textarea>
+                <textarea class="form-control {{ $errors->has('description_ar') ? 'border-danger' : '' }} "
+                          placeholder="ادخل وصف ماذا عنا"      name="description_ar" rows="10" >{{ old('description_ar', $data->description_ar ?? '') }}</textarea>
+        </div>
+    </div>
+    <div class="form-group col-6">
+        <label>وصف ماذا عنا بالانجليزيه<span
+                class="text-danger">*</span></label>
+        <div class="">
+                <textarea class="form-control {{ $errors->has('description_en') ? 'border-danger' : '' }} "
+                          placeholder="ادخل وصف ماذا عنا"      name="description_en" rows="10" >{{ old('description_en', $data->description_en ?? '') }}</textarea>
         </div>
     </div>
     <div class="form-group col-md-6">

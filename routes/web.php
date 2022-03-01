@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\AboutUsController;
+use App\Http\Controllers\Dashboard\AddOnController;
 use App\Http\Controllers\Dashboard\AreaController;
 use App\Http\Controllers\Dashboard\BlogController;
 use App\Http\Controllers\Dashboard\CategoryController;
@@ -78,6 +79,10 @@ Route::group(['prefix' => 'projects','middleware'=>'auth'],function () {
     Route::get('delete/{id}', [ProjectsController::class, 'delete'])->name('projects.delete');
     Route::get('delete/image/{id}', [ProjectsController::class, 'deleteProjectImage'])->name('projects.image.delete');
     Route::post('upload_images', [ProjectsController::class, 'uploadProjectImage'])->name('projects.upload.images');
+    Route::post('/project/active', [ProjectsController::class, 'changeActive'])->name('projects.active');
+    Route::post('/project/tryable', [ProjectsController::class, 'changeTryable'])->name('projects.tryable');
+    Route::post('/project/special', [ProjectsController::class, 'changeSpecial'])->name('projects.special');
+
 });
 //services
 Route::group(['prefix' => 'services','middleware'=>'auth'],function () {
@@ -91,59 +96,11 @@ Route::group(['prefix' => 'services','middleware'=>'auth'],function () {
 //categories
 Route::group(['prefix' => 'categories','middleware'=>'auth'],function () {
     Route::get('/', [CategoryController::class, 'index'])->name('categories');
-    Route::get('create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::get('create/{type}', [CategoryController::class, 'create'])->name('categories.create');
     Route::post('store', [CategoryController::class, 'store'])->name('categories.store');
     Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
     Route::post('update/{id}', [CategoryController::class, 'update'])->name('categories.update');
     Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
-});
-//areas
-//Route::group(['prefix' => 'areas','middleware'=>'auth'],function () {
-//    Route::get('/', [AreaController::class, 'index'])->name('areas');
-//    Route::get('create', [AreaController::class, 'create'])->name('areas.create');
-//    Route::post('store', [AreaController::class, 'store'])->name('areas.store');
-//    Route::get('edit/{id}', [AreaController::class, 'edit'])->name('areas.edit');
-//    Route::post('update/{id}', [AreaController::class, 'update'])->name('areas.update');
-//    Route::get('delete/{id}', [AreaController::class, 'delete'])->name('areas.delete');
-//});
-
-//locations
-Route::group(['prefix' => 'locations','middleware'=>'auth'],function () {
-    Route::get('/', [LocationController::class, 'index'])->name('locations');
-    Route::get('create', [LocationController::class, 'create'])->name('locations.create');
-    Route::post('store', [LocationController::class, 'store'])->name('locations.store');
-    Route::get('edit/{id}', [LocationController::class, 'edit'])->name('locations.edit');
-    Route::post('update/{id}', [LocationController::class, 'update'])->name('locations.update');
-    Route::get('delete/{id}', [LocationController::class, 'delete'])->name('locations.delete');
-});
-//types
-Route::group(['prefix' => 'types','middleware'=>'auth'],function () {
-    Route::get('/', [TypeController::class, 'index'])->name('types');
-    Route::get('create', [TypeController::class, 'create'])->name('types.create');
-    Route::post('store', [TypeController::class, 'store'])->name('types.store');
-    Route::get('edit/{id}', [TypeController::class, 'edit'])->name('types.edit');
-    Route::post('update/{id}', [TypeController::class, 'update'])->name('types.update');
-    Route::get('delete/{id}', [TypeController::class, 'delete'])->name('types.delete');
-});
-//blog
-Route::group(['prefix' => 'blogs','middleware'=>'auth'],function () {
-    Route::get('/', [BlogController::class, 'index'])->name('blogs');
-    Route::get('create', [BlogController::class, 'create'])->name('blogs.create');
-    Route::post('store', [BlogController::class, 'store'])->name('blogs.store');
-    Route::get('edit/{id}', [BlogController::class, 'edit'])->name('blogs.edit');
-    Route::post('update/{id}', [BlogController::class, 'update'])->name('blogs.update');
-    Route::get('delete/{id}', [BlogController::class, 'delete'])->name('blogs.delete');
-});
-
-
-//locations
-Route::group(['prefix' => 'teams','middleware'=>'auth'],function () {
-    Route::get('/', [TeamController::class, 'index'])->name('teams');
-    Route::get('create', [TeamController::class, 'create'])->name('teams.create');
-    Route::post('store', [TeamController::class, 'store'])->name('teams.store');
-    Route::get('edit/{id}', [TeamController::class, 'edit'])->name('teams.edit');
-    Route::post('update/{id}', [TeamController::class, 'update'])->name('teams.update');
-    Route::get('delete/{id}', [TeamController::class, 'delete'])->name('teams.delete');
 });
 
 //sliders
@@ -169,5 +126,15 @@ Route::group(['prefix' => 'settings'],function () {
 Route::group(['prefix' => 'inboxes','middleware'=>'auth'],function () {
     Route::get('/', [InboxController::class, 'index'])->name('inboxes');
     Route::get('/{id}', [InboxController::class, 'show'])->name('inboxes.show');
+});
+
+//services
+Route::group(['prefix' => 'addons','middleware'=>'auth'],function () {
+    Route::get('/', [AddOnController::class, 'index'])->name('addons');
+    Route::get('create', [AddOnController::class, 'create'])->name('addons.create');
+    Route::post('store', [AddOnController::class, 'store'])->name('addons.store');
+    Route::get('edit/{id}', [AddOnController::class, 'edit'])->name('addons.edit');
+    Route::post('update/{id}', [AddOnController::class, 'update'])->name('addons.update');
+    Route::get('delete/{id}', [AddOnController::class, 'delete'])->name('addons.delete');
 });
 

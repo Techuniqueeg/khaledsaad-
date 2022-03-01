@@ -28,8 +28,8 @@ class ServiceRequest extends FormRequest
         return [
             'title_ar' => 'required|max:191',
             'title_en' => 'required|max:191',
-            'description_ar' => 'nullable|string|max:191',
-            'description_en' => 'nullable|string|max:191',
+            'description_ar' => 'required|string|max:191',
+            'description_en' => 'required|string|max:191',
             'image' => [
                 'nullable',
                 'mimes:jpeg,jpg,png',

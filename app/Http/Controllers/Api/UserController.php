@@ -16,6 +16,13 @@ use function response;
 
 class UserController extends Controller
 {
+
+    public function test(Request $request)
+    {
+        return 'hello';
+
+    }
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [

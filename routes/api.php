@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\HomeFrontController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Dashboard\FavouriteController;
@@ -23,6 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::post('/register', [UserController::class, 'register']);
     Route::post('/login', [UserController::class, 'login']);
+
     Route::post('/logout', [UserController::class, 'logout'])->middleware('jwt.verify');
 });
 
@@ -56,4 +58,14 @@ Route::group(['middleware' => 'jwt.verify'], function () {
     Route::post('deleteFavourite', [FavouriteController::class, 'delete']);
 
 
+    Route::group(['middleware' => 'email.verified'], function () {
+
+        //cart
+        Route::post('cart/{type}', [CartController::class, 'cart']);
+        Route::get('selectCart', [CartController::class, 'myCart']);
+        Route::get('checkout', [CartController::class, 'checkout']);
+        Route::post('updateQuantity', [CartController::class, 'updateQuantity']);
+        Route::get('card_count', [CartController::class, 'count']);
+        Route::post('cart/product/remove', [CartController::class, 'remove']);
+    });
 });

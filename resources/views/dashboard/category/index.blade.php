@@ -26,8 +26,11 @@
     <div class="card">
         <div class="text-right">
         <div class="card-header">
-            <a href="{{route('categories.create')}}" class="btn btn-warning font-weight-bold mr-2">
-                <i class="fa fa-plus"></i>اضـافـه</a>
+            <a href="{{route('categories.create',$type='parent')}}" class="btn btn-warning font-weight-bold mr-2">
+                <i class="fa fa-plus"></i> اضـافـه قسم رائسي</a>
+            <a href="{{route('categories.create',$type='child')}}" class="btn btn-warning font-weight-bold mr-2">
+                <i class="fa fa-plus"></i> اضـافـه قسم فرعي</a>
+
         </div>
         </div>
         <div class="card-body">

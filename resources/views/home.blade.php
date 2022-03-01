@@ -1,7 +1,7 @@
 @php($title='الصفحه الرئيسيه')
 @extends('adminLayouts.app')
 @section('title')
-     بــنــاء
+     خــالد ســعـد
 @endsection
 @section('breadcrumb')
     <div class="d-flex align-items-baseline flex-wrap mr-5">

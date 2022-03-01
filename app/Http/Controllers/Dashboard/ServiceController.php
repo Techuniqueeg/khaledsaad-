@@ -35,7 +35,12 @@ class ServiceController  extends GeneralController
     public function store(ServiceRequest $request)
     {
         $data = $request->all();
-        $trip = $this->model::create($data);
+        if ($request->image) {
+            if ($request->hasFile('image')) {
+                $data['image'] = $this->uploadImage($request->file('image'), $this->image_path);
+            }
+        }
+        $service = $this->model::create($data);
         return redirect()->route($this->route)->with('success', 'تم الاضافه بنجاح');
     }
 
@@ -48,9 +53,18 @@ class ServiceController  extends GeneralController
     public function update(ServiceRequest $request, $id)
     {
         $data = $request->all();
+        $item = $this->model->find($id);
         unset($data['_token']);
-        $this->model::where('id',$id)->update($data);;
+        if ($request->image) {
+            if ($request->hasFile('image')) {
+                $data['image'] = $this->uploadImage($request->file('image'), $this->image_path,$item->image);
+            }
+        } else {
+            unset($data['image']);
+        }
+        $this->model::where('id',$id)->update($data);
         return redirect()->route($this->route)->with('success', 'تم التعديل بنجاح');
+
     }
 
     public function delete(Request $request, $id)

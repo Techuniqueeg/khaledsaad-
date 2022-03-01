@@ -24,6 +24,15 @@ class Project extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    public function Colors()
+    {
+        return $this->hasOne(ProductAttribute::class, 'project_id');
+    }
+
+    public function Addon()
+    {
+        return $this->hasMany(ProductAddon::class, 'project_id');
+    }
 
     protected $appends = ['favorite'];
 

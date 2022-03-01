@@ -1,4 +1,4 @@
-@php($title='تعديل المشروع')
+@php($title='تعديل المنتج')
 @extends('adminLayouts.app')
 @section('title')
     {{$title}}
@@ -14,7 +14,7 @@
         <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
             <li class="breadcrumb-item">
                 <a href="{{route('projects')}}"
-                   class="text-muted">المشاريع</a>
+                   class="text-muted">المنتجات</a>
             </li>
             <li class="breadcrumb-item">
                 <a href="{{route('admin')}}"
@@ -39,6 +39,14 @@
 
 @endsection
 @section('script')
+    <script src="assets/js/pages/crud/forms/widgets/select2.js"></script>
+    <script>
+        // tagging support
+        $('#kt_select2_1_modal').select2({
+            placeholder: "اختر الالوان",
+            tags: true
+        });
+    </script>
     <script !src="">
         var avatar1 = new KTImageInput('kt_image_1');
     </script>
@@ -47,6 +55,13 @@
             $(document).on('submit', 'form', function() {
                 $('button').attr('disabled', 'disabled');
             });
+        });
+    </script>
+    <script>
+        // tagging support
+        $('#kt_select2_2_modal').select2({
+            placeholder: "اختر الاضافات",
+            tags: true
         });
     </script>
     <script type="text/javascript">

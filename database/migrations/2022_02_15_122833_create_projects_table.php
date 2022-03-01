@@ -21,11 +21,12 @@ class CreateProjectsTable extends Migration
             $table->string('name_en');
             $table->longText('description_ar');
             $table->longText('description_en');
-            $table->string('price');
-            $table->longText('feature');
-            $table->enum('active',['1','0']);
-            $table->enum('tryable',['1','0']);
-            $table->enum('special',['1','0']);
+            $table->double('price');
+            $table->longText('feature_ar');
+            $table->longText('feature_en');
+            $table->enum('active',['1','0'])->default('1');
+            $table->enum('tryable',['1','0'])->default('1');
+            $table->enum('special',['1','0'])->default('1');
 
             $table->timestamps();
         });

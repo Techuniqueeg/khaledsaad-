@@ -32,10 +32,11 @@ class AboutUsController extends GeneralController
     {
         $data = $request->all();
         $id='1';
+        $item = $this->model->find($id);
         unset($data['_token']);
         if ($request->image) {
             if ($request->hasFile('image')) {
-                $data['image'] = $this->uploadImage($request->file('image'), $this->image_path, null, 300);
+                $data['image'] = $this->uploadImage($request->file('image'), $this->image_path, $item->image, 300);
             }
         } else {
             unset($data['image']);

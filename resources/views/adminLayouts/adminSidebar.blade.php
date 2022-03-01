@@ -18,7 +18,7 @@
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{route('projects')}}" class="menu-link menu-toggle">
                     <i class="menu-icon  flaticon2-cup"></i>
-                    <span class="menu-text">المشاريع</span>
+                    <span class="menu-text">المنتجات</span>
                 </a>
             </li>
             <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'categories') menu-item-open @endif "
@@ -26,6 +26,13 @@
                 <a href="{{route('categories')}}" class="menu-link menu-toggle">
                     <i class="menu-icon flaticon-pie-chart"></i>
                     <span class="menu-text">الاقسام</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'addons') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('addons')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-app"></i>
+                    <span class="menu-text">الاضافات</span>
                 </a>
             </li>
             <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'sliders') menu-item-open @endif "
