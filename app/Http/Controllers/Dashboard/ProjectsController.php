@@ -34,7 +34,7 @@ class ProjectsController extends GeneralController
 
     public function create()
     {
-        $Category = Category::all();
+        $Category = Category::whereNotnull('parent_id')->get();
         $addon = AddOn::all();
         $attr = AttributeValues::where('attribute_id', '1')->get();
         return view('dashboard.' . $this->viewPath . '.create', compact('Category', 'attr', 'addon'));
@@ -99,7 +99,7 @@ class ProjectsController extends GeneralController
     {
         $addon = AddOn::all();
         $attr = AttributeValues::where('attribute_id', '1')->get();
-        $Category = Category::all();
+        $Category = Category::whereNotnull('parent_id');
         $data = $this->model::with('Images', 'Colors', 'Addon')->findOrFail($id);
         $addon_ids = ProductAddon::where('project_id', $id)->pluck('addon_id')->toArray();
 

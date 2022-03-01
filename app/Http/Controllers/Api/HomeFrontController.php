@@ -4,34 +4,27 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutUs;
-use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Inbox;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\Slider;
-use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class HomeFrontController extends Controller
 {
-    public function blogs(Request $request)
+    public function sliders(Request $request)
     {
-        $data = Blog::orderBy('id', 'DESC')->get();
+        $data = Slider::orderBy('id', 'DESC')->get();
         return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
     }
 
-    public function blogsDetails(Request $request, $id)
+    public function products(Request $request)
     {
-        $data = Blog::find($id);
-        if ($data) {
-            $data = Blog::where('id', $id)->first();
-            return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
-        } else {
-            return msg($request, '401', 'يجب اختيار المقال الصحيح');
-        }
+        $data = Project::with('Category')->orderBy('id', 'DESC')->get();
+        return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
     }
 
     public function settings(Request $request)
@@ -54,36 +47,29 @@ class HomeFrontController extends Controller
 
     public function categories(Request $request)
     {
-        $data = Category::get();
+        $data = Category::orderBy('id', 'DESC')->get();
         return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
     }
 
-    public function team(Request $request)
-    {
-        $data = Team::get();
-        return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
-    }
 
-    public function sliders(Request $request)
-    {
-        $data = Slider::get();
-        return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
-    }
-
-    public function projects(Request $request)
-    {
-        $data = Project::with(['Images', 'Category','Type'])->get();
-        return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
-    }
-
-    public function projectDetails(Request $request, $id)
+    public function productDetails(Request $request, $id)
     {
         $data = Project::find($id);
         if ($data) {
-            $data = Project::where('id', $id)->with(['Images', 'Category'])->first();
+            $data = Project::where('id', $id)->with(['Images','Category','Colors','Addon'])->first();
             return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
         } else {
-            return msg($request, '401', 'يجب اختيار المشروع صحيح');
+            return msg($request, '401', 'يجب اختيار المنتج صحيح');
+        }
+    }
+    public function productByCategory(Request $request, $id)
+    {
+        $data = Project::where('category_id',$id)->orderBy('id', 'DESC')->get();;
+        if ($data) {
+            $data = Project::where('id', $id)->with(['Images','Category','Colors','Addon'])->first();
+            return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
+        } else {
+            return msg($request, '401', 'يجب اختيار المنتج صحيح');
         }
     }
 

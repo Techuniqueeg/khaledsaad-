@@ -30,16 +30,14 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
 
 //home
 Route::group(['middleware' => 'api'], function () {
-    Route::get('/project/all', [HomeFrontController::class, 'projects']);
-    Route::post('/project/{id}', [HomeFrontController::class, 'projectDetails']);
+    Route::get('/product/all', [HomeFrontController::class, 'products']);
+    Route::post('/product/{id}', [HomeFrontController::class, 'productDetails']);
+    Route::post('/product/category/{id}', [HomeFrontController::class, 'productByCategory']);
     Route::get('/sliders', [HomeFrontController::class, 'sliders']);
     Route::get('/services', [HomeFrontController::class, 'services']);
-    Route::get('/teams', [HomeFrontController::class, 'team']);
     Route::get('/aboutus', [HomeFrontController::class, 'aboutUs']);
     Route::get('/settings', [HomeFrontController::class, 'settings']);
-    Route::post('/blog/{id}', [HomeFrontController::class, 'blogsDetails']);
-    Route::get('/blogs/all', [HomeFrontController::class, 'blogs']);
-    Route::get('/locations', [HomeFrontController::class, 'locations']);
+    Route::get('/sliders', [HomeFrontController::class, 'sliders']);
     Route::get('/categories', [HomeFrontController::class, 'categories']);
     Route::post('/filter', [HomeFrontController::class, 'filtration']);
 
@@ -59,7 +57,6 @@ Route::group(['middleware' => 'jwt.verify'], function () {
 
 
     Route::group(['middleware' => 'email.verified'], function () {
-
         //cart
         Route::post('cart/{type}', [CartController::class, 'cart']);
         Route::get('selectCart', [CartController::class, 'myCart']);
