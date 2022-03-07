@@ -41,28 +41,29 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('/categories', [HomeFrontController::class, 'categories']);
     Route::post('/filter', [HomeFrontController::class, 'filtration']);
 
-});
 
-Route::group(['middleware' => 'jwt.verify'], function () {
+    Route::group(['middleware' => 'jwt.verify'], function () {
 
-    //verify
-    Route::post('/verify/Email', [UserController::class, 'verification']);
-    //inbox
-    Route::post('/send/inbox', [HomeFrontController::class, 'inbox']);
+        //verify
+        Route::post('/verify/Email', [UserController::class, 'verification']);
+        //inbox
+        Route::post('/send/inbox', [HomeFrontController::class, 'inbox']);
 
-    // favourite
-    Route::get('allFavourite', [FavouriteController::class, 'all']);
-    Route::post('addFavourite', [FavouriteController::class, 'add']);
-    Route::post('deleteFavourite', [FavouriteController::class, 'delete']);
+        // favourite
+        Route::get('allFavourite', [FavouriteController::class, 'all']);
+        Route::post('addFavourite', [FavouriteController::class, 'add']);
+        Route::post('deleteFavourite', [FavouriteController::class, 'delete']);
 
 
-    Route::group(['middleware' => 'email.verified'], function () {
-        //cart
-        Route::post('cart/{type}', [CartController::class, 'cart']);
-        Route::get('selectCart', [CartController::class, 'myCart']);
-        Route::get('checkout', [CartController::class, 'checkout']);
-        Route::post('updateQuantity', [CartController::class, 'updateQuantity']);
-        Route::get('card_count', [CartController::class, 'count']);
-        Route::post('cart/product/remove', [CartController::class, 'remove']);
+        Route::group(['middleware' => 'email.verified'], function () {
+            //cart
+            Route::post('cart/{type}', [CartController::class, 'cart']);
+            Route::get('selectCart', [CartController::class, 'myCart']);
+            Route::get('checkout', [CartController::class, 'checkout']);
+            Route::post('updateQuantity', [CartController::class, 'updateQuantity']);
+            Route::get('card_count', [CartController::class, 'count']);
+            Route::post('cart/product/remove', [CartController::class, 'remove']);
+        });
     });
 });
+

@@ -17,6 +17,9 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('product_id')->constrained('projects');
+            $table->string('image')->nullable();
+            $table->integer('color_id');
+            $table->integer('addon_id')->nullable();
             $table->integer('quantity')->default(1);
             $table->timestamps();
         });

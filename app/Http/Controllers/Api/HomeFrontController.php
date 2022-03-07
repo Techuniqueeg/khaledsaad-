@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProjectRecouces;
 use App\Models\AboutUs;
 use App\Models\Category;
 use App\Models\Inbox;
@@ -56,7 +57,8 @@ class HomeFrontController extends Controller
     {
         $data = Project::find($id);
         if ($data) {
-            $data = Project::where('id', $id)->with(['Images','Category','Colors','Addon'])->first();
+            $data = Project::where('id', $id)->with(['Images','Category','Colors','Addons'])->first();
+            $data = (new ProjectRecouces($data));
             return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
         } else {
             return msg($request, '401', 'يجب اختيار المنتج صحيح');

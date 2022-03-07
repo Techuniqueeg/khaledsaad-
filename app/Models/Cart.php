@@ -16,4 +16,8 @@ class Cart extends Model
     public function Product(){
         return $this->belongsTo(Project::class,'product_id','id')->with(['Category']);
     }
+    public function getImageAttribute($image)
+    {
+        return asset('') .  $image;
+    }
 }

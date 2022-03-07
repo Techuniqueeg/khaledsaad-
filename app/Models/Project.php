@@ -29,9 +29,9 @@ class Project extends Model
         return $this->hasOne(ProductAttribute::class, 'project_id');
     }
 
-    public function Addon()
+    public function Addons()
     {
-        return $this->hasMany(ProductAddon::class, 'project_id');
+        return $this->hasMany(ProductAddon::class, 'project_id')->with('Addon');
     }
 
     protected $appends = ['favorite'];
