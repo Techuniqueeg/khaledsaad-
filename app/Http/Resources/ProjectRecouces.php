@@ -26,6 +26,7 @@ class ProjectRecouces extends JsonResource
             'active' => $this->active,
             'tryable' => $this->tryable,
             'special' => $this->special,
+            'image' => $this->image,
             'price' => $this->price,
             'addons' => $this->Addons,
             'images' => $this->Images,

@@ -99,8 +99,8 @@ class ProjectsController extends GeneralController
     {
         $addon = AddOn::all();
         $attr = AttributeValues::where('attribute_id', '1')->get();
-        $Category = Category::whereNotnull('parent_id');
-        $data = $this->model::with('Images', 'Colors', 'Addon')->findOrFail($id);
+        $Category = Category::whereNotnull('parent_id')->get();
+        $data = $this->model::with('Images', 'Colors', 'Addons')->findOrFail($id);
         $addon_ids = ProductAddon::where('project_id', $id)->pluck('addon_id')->toArray();
 
         return view('dashboard.' . $this->viewPath . '.edit', compact('data', 'Category', 'attr', 'addon', 'addon_ids'));
@@ -111,6 +111,7 @@ class ProjectsController extends GeneralController
         $data = $request->all();
         unset($data['images']);
         unset($data['colors']);
+        unset($data['addons']);
 
         $item = $this->model->find($id);
         unset($data['_token']);
@@ -137,6 +138,18 @@ class ProjectsController extends GeneralController
             ProductAttribute::where('project_id', $id)->update([
                 'value' => json_encode($request->colors)
             ]);
+        }
+        if ($request->addons) {
+            ProductAddon::where('project_id',$id)->delete();
+            foreach ($request->addons as $row) {
+                ProductAddon::create([
+                    'project_id' => $id,
+                    'addon_id' => $row,
+                ]);
+            }
+
+        }elseif ($request->addons == null){
+            ProductAddon::where('project_id',$id)->delete();
         }
         return redirect()->route($this->route)->with('success', 'تم الاضافه بنجاح');
 

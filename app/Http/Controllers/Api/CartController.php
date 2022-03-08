@@ -80,7 +80,7 @@ class CartController extends GeneralController
             }else{
                 $total = $total + $row->quantity * $row->product->price;
             }
-            
+
         }
         $data['total'] = $total;
         return msgdata($request, success(), 'منتجات السله', $data);
