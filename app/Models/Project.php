@@ -42,7 +42,7 @@ class Project extends Model
 
             $auth = auth('api')->user()->id;
             if ($auth) {
-                $product = favourite::where('project_id', $this->id)->where('user_id', $auth)->first();
+                $product = Favourite::where('project_id', $this->id)->where('user_id', $auth)->first();
                 if ($product) {
                     return true;
                 } else
