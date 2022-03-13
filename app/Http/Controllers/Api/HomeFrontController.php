@@ -71,7 +71,7 @@ class HomeFrontController extends Controller
             $data = Project::where('id', $id)->with(['Images','Category','Colors','Addons'])->first();
             return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
         } else {
-            return msg($request, '401', 'يجب اختيار القسم صحيح');
+            return msg($request, '401', 'يجب اختيار القسم الفرعي الصحيح');
         }
     }
 
