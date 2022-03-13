@@ -68,7 +68,7 @@ class HomeFrontController extends Controller
     {
         $data = Category::where('id',$id)->whereNotNull('parent_id')->orderBy('id', 'DESC')->get();
         if ($data) {
-            $data = Project::where('id', $id)->with(['Images','Category','Colors','Addon'])->first();
+            $data = Project::where('id', $id)->with(['Images','Category','Colors','Addons'])->first();
             return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
         } else {
             return msg($request, '401', 'يجب اختيار القسم صحيح');
