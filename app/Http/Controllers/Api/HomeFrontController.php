@@ -66,7 +66,7 @@ class HomeFrontController extends Controller
     }
     public function productByCategory(Request $request, $id)
     {
-        $data = Category::where('category_id',$id)->wherenull('parent_id')->orderBy('id', 'DESC')->get();
+        $data = Category::where('category_id',$id)->whereNotNull('parent_id')->orderBy('id', 'DESC')->get();
         if ($data) {
             $data = Category::where('id', $id)->with(['Images','Category','Colors','Addon'])->first();
             return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
