@@ -66,12 +66,12 @@ class HomeFrontController extends Controller
     }
     public function productByCategory(Request $request, $id)
     {
-        $data = Project::where('category_id',$id)->orderBy('id', 'DESC')->get();;
+        $data = Category::where('category_id',$id)->wherenull('parent_id')->orderBy('id', 'DESC')->get();
         if ($data) {
-            $data = Project::where('id', $id)->with(['Images','Category','Colors','Addon'])->first();
+            $data = Category::where('id', $id)->with(['Images','Category','Colors','Addon'])->first();
             return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
         } else {
-            return msg($request, '401', 'يجب اختيار المنتج صحيح');
+            return msg($request, '401', 'يجب اختيار القسم صحيح');
         }
     }
 
