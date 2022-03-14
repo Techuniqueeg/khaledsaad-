@@ -23,7 +23,7 @@ class CartController extends GeneralController
         $data = $request->all();
         $validator = Validator::make($data, [
             'product_id' => 'required|exists:projects,id',
-            'color_id' => 'required|exists:attribute_values,attribute_id|required_with:image',
+            'color_id' => 'required|exists:attribute_values,id|required_with:image',
             'addon_id' => 'nullable|exists:add_ons,id|required_with:image',
             'image' => [
                 'nullable',
